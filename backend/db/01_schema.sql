@@ -59,5 +59,9 @@ CREATE TABLE attendance_records (
     attendance_status VARCHAR(10) NOT NULL
                       CHECK (attendance_status IN ('present', 'flagged', 'absent')),
     verified_at       TIMESTAMPTZ,
-    PRIMARY KEY (session_id, user_id)
+    -- Why a check-in was flagged, e.g. out of range or location denied (#7).
+    -- Required when the status is 'flagged', and empty otherwise.
+    flag_reason       VARCHAR(255),
+    PRIMARY KEY (session_id, user_id),
+    CHECK ((attendance_status = 'flagged') = (flag_reason IS NOT NULL))
 );

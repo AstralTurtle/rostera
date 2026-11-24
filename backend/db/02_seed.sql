@@ -27,7 +27,7 @@ INSERT INTO enrollment (class_id, user_id, role) VALUES
 INSERT INTO attendance_sessions (class_id, started_by, started_at, closed_at, session_status) VALUES
     (1, 1, '2026-11-18 10:00-05', '2026-11-18 10:15-05', 'closed');
 
-INSERT INTO attendance_records (session_id, user_id, attendance_status, verified_at) VALUES
-    (1, 4, 'present', '2026-11-18 10:02-05'),
-    (1, 5, 'flagged', '2026-11-18 10:04-05'),  -- e.g. out of range
-    (1, 6, 'absent',  NULL);
+INSERT INTO attendance_records (session_id, user_id, attendance_status, verified_at, flag_reason) VALUES
+    (1, 4, 'present', '2026-11-18 10:02-05', NULL),
+    (1, 5, 'flagged', '2026-11-18 10:04-05', 'Outside the geofence radius'),
+    (1, 6, 'absent',  NULL,                  NULL);
